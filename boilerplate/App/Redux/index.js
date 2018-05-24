@@ -4,24 +4,26 @@ import rootSaga from '../Sagas/';
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  search: require('./SearchRedux').reducer
+	search: require('./SearchRedux').reducer
 });
 
 export default () => {
-  let { store, sagasManager, sagaMiddleware } = configureStore(reducers, rootSaga);
+	let { store, sagasManager, sagaMiddleware } = configureStore(reducers, rootSaga);
 
-  if (module.hot) {
-    module.hot.accept(() => {
-      const nextRootReducer = require('./').reducers;
-      store.replaceReducer(nextRootReducer);
+	if (module.hot) {
+		module.hot.accept(() => {
+			const nextRootReducer = require('./').reducers;
 
-      const newYieldedSagas = require('../Sagas').default;
-      sagasManager.cancel();
-      sagasManager.done.then(() => {
-        sagasManager = sagaMiddleware.run(newYieldedSagas);
-      });
-    });
-  }
+			store.replaceReducer(nextRootReducer);
 
-  return store;
+			const newYieldedSagas = require('../Sagas').default;
+
+			sagasManager.cancel();
+			sagasManager.done.then(() => {
+				sagasManager = sagaMiddleware.run(newYieldedSagas);
+			});
+		});
+	}
+
+	return store;
 };

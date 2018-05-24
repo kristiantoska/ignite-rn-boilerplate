@@ -1,5 +1,5 @@
-// @cliDescription  Generate a screen
-// Generates a "screen"
+// @cliDescription  Generate a component
+// Generates a "component"
 
 module.exports = async function(context) {
 	// Learn more about context: https://infinitered.github.io/gluegun/#/context-api.md
@@ -8,7 +8,7 @@ module.exports = async function(context) {
 
 	// validation
 	if (isBlank(parameters.first)) {
-		print.info(`ignite generate screen <name>\n`);
+		print.info(`ignite generate component <name>\n`);
 		print.info('A name is required.');
 		return;
 	}
@@ -16,12 +16,16 @@ module.exports = async function(context) {
 	const name = pascalCase(parameters.first);
 	const props = { name };
 
-	// Copies the `screen.js.ejs` in your plugin's templates folder
-	// into App/Things/${name}.js.
+	// Copies the `component.js.ejs` in your plugin's templates folder
+	// into src/Components/${name}.js
 	const jobs = [
 		{
-			template: 'screen.js.ejs',
-			target: `App/Containers/${name}.js`
+			template: 'compStyle.js.ejs',
+			target: `src/Components/Styles/${name}Style.js`
+		},
+		{
+			template: 'component.js.ejs',
+			target: `src/Components/${name}.js`
 		}
 	];
 

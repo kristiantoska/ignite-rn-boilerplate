@@ -1,4 +1,6 @@
 const { merge, pipe, assoc, omit, __ } = require('ramda');
+const { getReactNativeVersion } = require('./lib/react-native-version');
+
 /**
  * This file provides an `install` function that should install React Native,
  * copy over any folders and template files, and install any desired plugins.
@@ -7,8 +9,6 @@ const { merge, pipe, assoc, omit, __ } = require('ramda');
  * Refer to that one to see a more full featured example of what you can do.
  *
  */
-
-const REACT_NATIVE_VERSION = '0.55.1';
 
 /**
  * Let's install.
@@ -22,13 +22,18 @@ async function install(context) {
 	const { filesystem, parameters, ignite, reactNative, print, system, template } = context;
 
 	const name = parameters.third;
+	// Object.keys(parameters.options).map(key => {
+	// 	print.success(key + ': ' + parameters.options[key]);
+	// });
+	// process.exit(0);
+
 	const spinner = print
 		.spin(`using the ${print.colors.cyan('RnBoilerplate')} boilerplate`)
 		.succeed();
 
 	// attempt to install React Native or die trying
 	// this will also chdir into the new directory
-	const rnInstall = await reactNative.install({ name, version: REACT_NATIVE_VERSION });
+	const rnInstall = await reactNative.install({ name, version: getReactNativeVersion(context) });
 	if (rnInstall.exitCode > 0) {
 		process.exit(rnInstall.exitCode);
 	}

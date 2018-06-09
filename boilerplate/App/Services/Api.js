@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const create = (baseURL = 'https://api.github.com/') => {
   // ------
   // STEP 1
@@ -13,7 +15,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getUser = username => api.get(`${baseURL}search/users`, { q: username });
+  const getUser = username => axios.get(`${baseURL}search/users`, { q: username });
 
   // ------
   // STEP 2

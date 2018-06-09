@@ -1,12 +1,20 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import Config from '../Config/AppConfig';
 import createSagaMiddleware from 'redux-saga';
+
+import Config from '../Config/AppConfig';
+
+const logger = store => next => action => {
+	const returnValue = next(action);
+
+	//console.log('%c action', 'color: #03A9F4', action);
+	return returnValue;
+};
 
 // creates the store
 export default (rootReducer, rootSaga) => {
   /* ------------- Redux Configuration ------------- */
 
-  const middleware = [];
+  const middleware = [logger];
   const enhancers = [];
 
   /* ------------- Saga Middleware ------------- */

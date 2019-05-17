@@ -1,5 +1,6 @@
 import React from 'react';
-import { Provider, UIManager } from 'react-redux';
+import { UIManager } from 'react-native';
+import { Provider } from 'react-redux';
 
 import createStore from './redux';
 import RootContainer from './RootContainer';

@@ -12,7 +12,7 @@
           "fixtures": "./src/fixtures",
           "lib": "./src/lib",
           "navigation": "./src/navigation",
-          "models": "./src/redux/models",
+          "models": "./src/models",
           "sagas": "./src/redux/sagas",
           "selectors": "./src/redux/selectors",
           "services": "./src/services",

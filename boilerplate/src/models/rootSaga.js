@@ -2,11 +2,11 @@ import { takeLatest, all } from 'redux-saga/effects';
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from 'models/startup';
+import { StartupTypes } from './startup';
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas';
+import { startup } from './startup/sagas';
 
 /* ------------- API ------------- */
 

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import configureStore from './createStore';
-import rootSaga from './sagas';
+import rootSaga from './rootSaga';
 
 import { reducer as StartupReducer } from 'models/startup';
 
